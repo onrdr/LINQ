@@ -1,5 +1,5 @@
-﻿using LinqLibrary;
-
+﻿using Linq_Library;
+ 
 
 List<Person> people = ListManager.LoadSampleData();
 
@@ -21,48 +21,40 @@ var people4 = people.OrderByDescending(x => x.LastName).ThenByDescending(x => x.
 Print("Order by LastName descending and then YearsExperience descending ", people4);
 #endregion
 
+
 #region Where
 // List of people that has YearExperince less than 9
 var people5 = people.Where(x => x.YearsExperience < 9).ToList();
 Print("Using where with experience smaller than 9", people5);
-
-
+ 
 // List of people that has YearExperince more than 9 and borned in march
 var people6 = people.Where(x => x.YearsExperience > 9 && x.Birthday.Month == 3).ToList();
 Print("Using where with experience bigger than 9 and birthday month is march", people6);
 #endregion
 
+
 #region Sum
 // The sum of the YearsExperience of all the people in the people list 
 int yearsTotal = people.Sum(x => x.YearsExperience);
-Console.WriteLine($"\nThe total years of experince of all the people is {yearsTotal}");
+Console.WriteLine($"The total years of experince of all the people is {yearsTotal}\n");
  
 // The sum of the YearsExperience of all the people who borned in march (chained methods => where and sum)
 yearsTotal = people.Where(x => x.Birthday.Month == 3).Sum(x => x.YearsExperience); 
-Console.WriteLine($"\nThe total years of experince of the people who borned in march is {yearsTotal}");
+Console.WriteLine($"The total years of experince of the people who borned in march is {yearsTotal}");
 #endregion
 
+ 
 
-
-
-
-
-
-
-
-
-Console.WriteLine();
+Console.ReadLine();
 
 static void Print(string heading, List<Person> list)
 {
-    Console.WriteLine($"\n{heading}");
-
-    Console.ForegroundColor = ConsoleColor.Green;
-    foreach (var person in list)
-    {
-        Console.WriteLine($"{person.FirstName} {person.LastName} ({person.Birthday.ToShortDateString()}) : Experience {person.YearsExperience}");
-    }
+    Console.WriteLine($"{heading}"); 
+    Console.ForegroundColor = ConsoleColor.Green; 
+    list.ForEach(x => Console.WriteLine($"{x.FirstName} {x.LastName} ({x.Birthday.ToShortDateString()}) " +
+                                        $": Experience {x.YearsExperience}")); 
     Console.ForegroundColor = ConsoleColor.Gray;
+    Console.WriteLine();
 }
 
 Console.ReadLine();

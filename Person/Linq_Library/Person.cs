@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿ 
 
-namespace LinqLibrary
+namespace Linq_Library
 {
     public class Person
     {
@@ -12,7 +8,6 @@ namespace LinqLibrary
         public string LastName { get; set; }
         public int YearsExperience { get; set; }
         public DateTime Birthday { get; set; }
-        public string FullName => $"{FirstName} {LastName}";
-
+        public string FullName => $"{FirstName} {LastName}"; 
     }
-}
+} 
